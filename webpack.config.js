@@ -18,12 +18,22 @@ module.exports = {
             // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
             {
               test: /\.ts(x?)$/,
-                exclude: /node_modules/,
-                use: [
-                    {
-                        loader: "ts-loader"
-                    }
-                ]
+              exclude: /node_modules/,
+              use: [
+                  {
+                      loader: "ts-loader"
+                  }
+              ]
+            },
+            {
+              test: /\.(jpe?g|png|gif|svg)$/i,
+              use: [{
+                loader: 'url-loader',
+                options: {
+                  limit: 8000,
+                  name: `./dist/[name].[ext]`
+                }
+              }]
             },
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
             { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
